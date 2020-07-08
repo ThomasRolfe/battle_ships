@@ -9,7 +9,7 @@ use Exception;
 
 class CombatService
 {
-    public function attack(Ship $vehicle1, Ship $vehicle2, array $impactTypes)
+    public function attack(Ship $vehicle1, Ship $vehicle2, array $impactTypes = null)
     {
         try {
             // Ensure both vehicles have health to fight
@@ -18,7 +18,7 @@ class CombatService
 
             $baseDamage = $this->baseDamage($vehicle1->attack, $vehicle2->defence);
 
-            $impactType = $this->impactType($impactTypes);
+            $impactType = $this->impactType($impactTypes ? $impactTypes : $vehicle1::DEFAULT_IMPACTS);
 
             $resultingDamage = $this->resultingDamage($baseDamage, $impactType);
 
