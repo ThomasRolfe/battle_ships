@@ -74,7 +74,7 @@ class CombatService
      */
     public static function impactType(array $availableTypes): array
     {
-        // check available types are valid format (all values add up to 100)
+        // TODO: check available types are valid format (all values add up to 100)
         $random_number = rand(0, 100);
 
         $currentProbabilityFloor = 0;
