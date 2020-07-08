@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\Vehicle;
 use Illuminate\Database\Eloquent\Model;
 
-class Ship extends Model
+class Ship extends Model implements Vehicle
 {
     protected $fillable = [
         'health',
@@ -12,23 +13,13 @@ class Ship extends Model
         'defence'
     ];
 
-    public const DEFAULT_IMPACTS = [
-        [
-            'name' => 'miss',
-            'chance' => 25,
-            'multiplier' => 0
+    public function canFight(): bool
+    {
+        if($this->health <= 0) {
+            return false;
+        }
 
-        ],
-        [
-            'name' => 'lucky_shot',
-            'weight' => 10,
-            'multiplier' => 3
-        ],
-        [
-            'name' => 'hit',
-            'weight' => 65,
-            'multiplier' => 1
-        ],
-    ];
+        return true;
+    }
 
 }
